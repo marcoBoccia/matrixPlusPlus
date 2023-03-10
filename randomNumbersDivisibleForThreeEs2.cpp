@@ -26,7 +26,7 @@ int main() {
 
     // Stampa della matrice e del vettore risultato
     cout << "Matrice:" << endl;
-    for (int i = 0; i < DIM_MATRICE; i++) {
+    for (int i = 0; i < DIM_MATRICE; i++) { 
         for (int j = 0; j < DIM_MATRICE; j++) {
             cout << matrice[i][j] << " ";
         }
@@ -40,3 +40,9 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
