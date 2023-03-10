@@ -26,7 +26,7 @@ int main()
     for (int i = 0; i < ROWS; i++) {
         int row_sum = 0;
         for (int j = 0; j < COLS; j++) {
-            cout << setw(4) << matrix[i][j] << " ";
+            cout << setw(4) << matrix[i][j] << " "; // La funzione setw imposta la larghezza del campo o il numero di caratteri da utilizzare per l'output dei numeri.
             row_sum += matrix[i][j];
         }
         cout << "| " << setw(4) << row_sum << endl;
