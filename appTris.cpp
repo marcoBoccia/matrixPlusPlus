@@ -2,14 +2,101 @@
 
 using namespace std;
 
-int mossaPensata(char *tab)
+void stampa(char *tab)
 {
-    return -1;
+    for (int i = 0; i < 9; i++)
+    {
+        cout << tab[i] << " ";
+        if (i == 2 || i == 5 || i == 8) // alla fine di ogni riga (3x3) vai a capo
+        {
+            cout << endl;
+        }
+    }
+
+    cout << endl;
+    cout << endl;
+    cout << endl;
 }
 
-// 1 per la vittoria
-// 0 per continuare la partita
-// -1 per il pareggio
+int mossaPensata(char *tab)
+{
+    int risultato = -1;
+    char vuoto = '_';
+
+    // QUI LAVORO
+    int combinazioni[8][3] = {
+        {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
+
+    for (int i = 0; i < 8; i++)
+    {
+        char a = tab[combinazioni[i][0]];
+        char b = tab[combinazioni[i][1]];
+        char c = tab[combinazioni[i][2]];
+
+        bool condizione = a == b && c == vuoto && a == 'X';
+
+        if (condizione)
+        {
+            risultato = combinazioni[i][2];
+        }
+    }
+
+    for (int i = 0; i < 8; i++)
+    {
+        char a = tab[combinazioni[i][0]];
+        char b = tab[combinazioni[i][1]];
+        char c = tab[combinazioni[i][2]];
+
+        bool condizione = c == b && a == vuoto && c == 'X';
+
+        if (condizione)
+        {
+            risultato = combinazioni[i][0];
+        }
+    }
+
+    for (int i = 0; i < 8; i++)
+    {
+        char a = tab[combinazioni[i][0]];
+        char b = tab[combinazioni[i][1]];
+        char c = tab[combinazioni[i][2]];
+        bool condizione = a == c && b == vuoto && c == 'X';
+
+        if (condizione)
+        {
+            risultato = combinazioni[i][2];
+        }
+    }
+    /* controllo se il CPU può vincere
+        se ci sono due O metto il terzo
+    */
+   for (int i = 0; i < 8; i++)
+   {
+        char a = tab[combinazioni[i][0]];
+        char b = tab[combinazioni[i][1]];
+        char c = tab[combinazioni[i][2]];
+        bool condizione = a == b && c == vuoto && a == 'O';
+
+        if (condizione)
+        {
+            risultato = combinazioni[i][0];
+        }
+   }
+   for (int i = 0; i < 8; i++)
+   {
+        char a = tab[combinazioni[i][0]];
+        char b = tab[combinazioni[i][1]];
+        char c = tab[combinazioni[i][2]];
+        bool condizione = a == c && b == vuoto && c == 'O';
+
+        if (condizione)
+        {
+            risultato = combinazioni[i][1];
+        }
+   }
+   return risultato;
+}
+
 int isWinner(char *arr)
 {
     char vuoto = '_';
@@ -22,8 +109,7 @@ int isWinner(char *arr)
         {1, 4, 7},
         {2, 5, 8},
         {0, 4, 8},
-        {2, 4, 6}
-    };
+        {2, 4, 6}};
 
     for (int i = 0; i < 8; i++)
     {
@@ -45,24 +131,6 @@ int isWinner(char *arr)
     }
 
     return -1;
-
-
-}
-
-void stampa(char *tabella)
-{
-    for (int i = 0; i < 9; i++)
-    {
-        cout << tabella[i] << " ";
-        if (i == 2 || i == 5 || i == 8) // alla fine di ogni riga (3x3) vai a capo
-        {
-            cout << endl;
-        }
-    }
-
-    cout << endl;
-    cout << endl;
-    cout << endl;
 }
 
 int main()
