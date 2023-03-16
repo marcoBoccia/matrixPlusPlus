@@ -64,7 +64,7 @@ int mossaPensata(char *tab)
 
         if (condizione)
         {
-            risultato = combinazioni[i][2];
+            risultato = combinazioni[i][1];
         }
     }
     /* controllo se il CPU può vincere
